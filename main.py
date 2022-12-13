@@ -7,12 +7,12 @@ board = MancalaBoard()
 game = Game(board, -1)
  
 
-next_player = 2
+next_player = 1
 while(not game.gameOver()):
 
     # next_player = Play.humanTurn(game, next_player)
     next_player, game = Play.computerTurn(game, next_player)
-    Play.computerTurn(game, 1)
+    # Play.computerTurn(game, 1)
 
     window.fill(BG_Color)
     game.state.draw()

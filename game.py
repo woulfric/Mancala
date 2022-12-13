@@ -1,43 +1,15 @@
 import copy
 import pygame
 from Variables import *
+from Heuristiques import *
 import time
-
-
-def NegaMaxAlphaBetaPruning(game, player, depth, alpha, beta):
-    
-    if game.gameOver() or depth == 1:
-        bestValue = game.evaluate()
-        bestPit = None
-
-        if player == -1 : #human
-            bestValue = -bestValue
-        return bestValue, bestPit
-    bestValue = float('-inf')
-    bestPit = None
-
-    
-    for pit in game.state.possibleMove(list(game.playerSide.keys())[list(game.playerSide.values()).index(player)]):
-        child_game = copy.deepcopy(game)
-        child_game.state.doMove(list(game.playerSide.keys())[list(game.playerSide.values()).index(player)], pit)
-        print("Player ",list(game.playerSide.keys())[list(game.playerSide.values()).index(player)]," Played pit ",pit)
-        value, _ = NegaMaxAlphaBetaPruning(child_game, -player, depth-1, -beta, -alpha)
-        value = -value
-        if value > bestValue:
-            bestValue = value
-            bestPit = pit
-        if bestValue > alpha:
-            alpha = bestValue
-        if beta <= alpha:
-            break
-    return bestValue, bestPit
 
 
 class  MancalaBoard:
 
     def __init__(self):
-        # self.board = {  'A' : 0,'B' : 0,'C' : 0,'D' : 0,'E' : 0,'F' : 5,
-        #                 'G' : 0,'H' : 1,'I' : 0,'J' : 0,'K' : 1,'L' : 0,
+        # self.board = {  'A' : 0,'B' : 10,'C' : 0,'D' : 0,'E' : 0,'F' : 4,
+        #                 'G' : 0,'H' : 1,'I' : 0,'J' : 0,'K' : 0,'L' : 0,
         #                 'M1' : 0, 'M2' : 0
         #              }
         self.board = {  'A' : 4,'B' : 4,'C' : 4,'D' : 4,'E' : 4,'F' : 4,
@@ -87,6 +59,19 @@ class  MancalaBoard:
             for i in range(seed):
                 self.board[self.fosse_suiv_player_2[Pit]] += 1
                 Pit = self.fosse_suiv_player_2[Pit]
+        
+        if (self.board[Pit] == 1) and (Pit != "M1" or Pit != "M2") :
+            if player == 1 and Pit in self.index_player_1 :
+
+                self.board["M1"] += self.board[Pit] + self.board[self.fosse_opp[Pit]]
+                self.board[Pit] = 0
+                self.fosse_opp[Pit] = 0
+
+            elif player == 2 and Pit in self.index_player_2 :
+                self.board["M2"] += self.board[Pit] + self.board[self.fosse_opp[Pit]]
+                self.board[Pit] = 0
+                self.fosse_opp[Pit] = 0
+
 
         if (player == 1 and Pit == 'M1') or (player == 2 and Pit == 'M2') :
             return player
@@ -201,7 +186,7 @@ class Game:
         self.alpha = float('-inf')
         self.beta = float('inf')
 
-    def gameOver(self):
+    def gameOver(self):  
         
         all_zero_1 = True
         for index in self.state.index_player_1:
