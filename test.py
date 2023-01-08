@@ -5,7 +5,11 @@ board = {  'A' : 1,'B' : 0,'C' : 5,'D' : 4,'E' : 8,'F' : 0,
         }
 
 index_player_1 = ['A', 'B', 'C', 'D', 'E', 'F']
-index_player_2 = ('G', 'H' , 'I', 'J', 'K', 'L')
+index_player_2 = ['G', 'H' , 'I', 'J', 'K', 'L']
+fosse_opp = {  
+                            'A' : 'G', 'B' : 'H', 'C' : 'I','D' : 'J', 'E' : 'K', 'F' : 'L',
+                            'G' : 'A', 'H' : 'B', 'I' : 'C','J' : 'D', 'K' : 'E', 'L' : 'F',
+                        }
 
 
 def possibleMove(player):
@@ -22,4 +26,6 @@ def possibleMove(player):
             return possible_moves
         
 
-print(possibleMove(1))
+# print(possibleMove(1))
+Pit = "G"
+print(board[fosse_opp[Pit]])

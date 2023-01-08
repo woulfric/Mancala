@@ -60,17 +60,16 @@ class  MancalaBoard:
                 self.board[self.fosse_suiv_player_2[Pit]] += 1
                 Pit = self.fosse_suiv_player_2[Pit]
         
-        if (self.board[Pit] == 1) and (Pit != "M1" or Pit != "M2") :
-            if player == 1 and Pit in self.index_player_1 :
+        # if (self.board[Pit] == 1) and (Pit != "M1" or Pit != "M2") :
+        #     if (player == 1 and Pit in self.index_player_1) :
+        #         self.board["M1"] += self.board[Pit] + self.board[self.fosse_opp[Pit]]
+        #         self.board[Pit] = 0
+        #         self.fosse_opp[Pit] = 0
 
-                self.board["M1"] += self.board[Pit] + self.board[self.fosse_opp[Pit]]
-                self.board[Pit] = 0
-                self.fosse_opp[Pit] = 0
-
-            elif player == 2 and Pit in self.index_player_2 :
-                self.board["M2"] += self.board[Pit] + self.board[self.fosse_opp[Pit]]
-                self.board[Pit] = 0
-                self.fosse_opp[Pit] = 0
+        #     elif (player == 2 and Pit in self.index_player_2) :
+        #         self.board["M2"] += self.board[Pit] + self.board[self.fosse_opp[Pit]]
+        #         self.board[Pit] = 0
+        #         self.fosse_opp[Pit] = 0
 
 
         if (player == 1 and Pit == 'M1') or (player == 2 and Pit == 'M2') :
