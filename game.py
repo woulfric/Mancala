@@ -8,7 +8,7 @@ import time
 class  MancalaBoard:
 
     def __init__(self):
-        # self.board = {  'A' : 0,'B' : 10,'C' : 0,'D' : 0,'E' : 0,'F' : 4,
+        # self.board = {  'A' : 0,'B' : 1,'C' : 0,'D' : 0,'E' : 0,'F' : 1,
         #                 'G' : 0,'H' : 1,'I' : 0,'J' : 0,'K' : 0,'L' : 0,
         #                 'M1' : 0, 'M2' : 0
         #              }
@@ -24,12 +24,12 @@ class  MancalaBoard:
                             'G' : 'A', 'H' : 'B', 'I' : 'C','J' : 'D', 'K' : 'E', 'L' : 'F',
                         }
         self.fosse_suiv_player_1 = {  
-                            'A' : 'B', 'B' : 'C', 'C' : 'D','D' : 'E', 'E' : 'F', 'F' : 'M1', 'M1' : 'G',
-                            'G' : 'H', 'H' : 'I', 'I' : 'J','J' : 'K', 'K' : 'L', 'L' : 'A',
+                            'A' : 'B', 'B' : 'C', 'C' : 'D','D' : 'E', 'E' : 'F', 'F' : 'M1', 'M1' : 'L',
+                            'L' : 'K', 'K' : 'J', 'J' : 'I', 'I' : 'H', 'H' : 'G', 'G' : 'A'
                         }
         self.fosse_suiv_player_2 = {  
-                            'A' : 'B', 'B' : 'C', 'C' : 'D','D' : 'E', 'E' : 'F', 'F' : 'G',
-                            'G' : 'H', 'H' : 'I', 'I' : 'J','J' : 'K', 'K' : 'L', 'L' : 'M2', 'M2' : 'A'
+                            'A' : 'B', 'B' : 'C', 'C' : 'D','D' : 'E', 'E' : 'F', 'F' : 'L',
+                            'L' : 'K', 'K' : 'J', 'J' : 'I', 'I' : 'H', 'H' : 'G', 'G' : 'M2', 'M2' : 'A'
                         }
     
     def possibleMove(self, player):

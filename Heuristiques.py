@@ -16,7 +16,6 @@ def NegaMaxAlphaBetaPruning(game, player, depth, alpha, beta):
     for pit in game.state.possibleMove(list(game.playerSide.keys())[list(game.playerSide.values()).index(player)]):
         child_game = copy.deepcopy(game)
         child_game.state.doMove(list(game.playerSide.keys())[list(game.playerSide.values()).index(player)], pit)
-        print("Player ",list(game.playerSide.keys())[list(game.playerSide.values()).index(player)]," Played pit ",pit)
         value, _ = NegaMaxAlphaBetaPruning(child_game, -player, depth-1, -beta, -alpha)
         value = -value
         if value > bestValue:
@@ -26,4 +25,5 @@ def NegaMaxAlphaBetaPruning(game, player, depth, alpha, beta):
             alpha = bestValue
         if beta <= alpha:
             break
+    print("Player ",list(game.playerSide.keys())[list(game.playerSide.values()).index(player)]," Played pit ",pit)
     return bestValue, bestPit
